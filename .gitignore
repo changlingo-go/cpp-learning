@@ -1,0 +1,146 @@
+# ============================================================
+# C/C++ Learning — Windows + Visual Studio + CMake
+# ============================================================
+# 只忽略「可再生成」的文件：构建产物、IDE 缓存、系统垃圾。
+# 下列手写文件应当始终提交：
+#   .c/.cpp/.h/.hpp 源码、CMakeLists.txt、CMakePresets.json、
+#   README.md、第三方库源码等。
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. CMake —— 构建目录
+# ------------------------------------------------------------
+# 整目录忽略，避免构建产物污染仓库
+/build/
+cmake-build-*/
+/out/
+
+
+# ------------------------------------------------------------
+# 2. CMake —— 源码树内生成的文件
+# ------------------------------------------------------------
+# 正常做法是在独立 build 目录里构建；这些规则用于兜底
+# 源码内构建（in-source build）或生成器残留的情况。
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+CTestTestfile.cmake
+DartConfiguration.tcl
+CPackConfig.cmake
+CPackSourceConfig.cmake
+install_manifest.txt
+compile_commands.json
+Testing/
+_deps/
+CMakeLists.txt.user
+
+# 个人本地预设：只提交团队共享的 CMakePresets.json
+CMakeUserPresets.json
+
+# 非 Visual Studio 生成器（Make / Ninja）的中间产物
+/Makefile
+build.ninja
+rules.ninja
+.ninja_deps
+.ninja_log
+
+
+# ------------------------------------------------------------
+# 3. Visual Studio —— IDE 状态与缓存
+# ------------------------------------------------------------
+.vs/
+ipch/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.dbmdl
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.ipch
+*.psess
+*.vsp
+*.vspx
+*.vsidx
+Generated\ Files/
+
+# ------------------------------------------------------------
+# 4. Visual Studio —— 由 CMake 生成的项目/解决方案文件
+# ------------------------------------------------------------
+# 这些文件由 CMake 生成，不要手改，重新生成即可
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vcproj
+*.vcproj.filters
+*.vcproj.user
+
+# ------------------------------------------------------------
+# 5. 编译中间产物与输出
+# ------------------------------------------------------------
+*.obj
+*.o
+*.lo
+*.iobj
+*.ipdb
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.pch
+*.gch
+*.exe
+*.dll
+*.lib
+*.tlog
+
+# MSBuild 默认输出目录（含 VS 默认的 Win32/x64 布局）
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+x64/
+x86/
+
+
+# ------------------------------------------------------------
+# 6. Windows 系统文件
+# ------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+
+
+# ------------------------------------------------------------
+# 7. 编辑器临时文件
+# ------------------------------------------------------------
+*~
+*.swp
+*.swo
+*.orig
+*.rej
+
+
+# ------------------------------------------------------------
+# 8. VS Code / clangd（额外补充，如不用可整段删除）
+# ------------------------------------------------------------
+# 忽略个人本地配置，但保留可共享的项目级配置
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+/.cache/
